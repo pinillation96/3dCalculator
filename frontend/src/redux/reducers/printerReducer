@@ -1,0 +1,16 @@
+const initialState = {
+  printers: []
+};
+
+const printerReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'PRINTER_LIST_SUCCESS':
+      return { printers: action.payload };
+    case 'PRINTER_LIST_FAIL':
+      return { error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export default printerReducer;
