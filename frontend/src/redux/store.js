@@ -1,12 +1,10 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { thunk } from 'redux-thunk';
+import { thunk } from 'redux-thunk'; // Correctly import thunk
 import { composeWithDevTools } from 'redux-devtools-extension';
 import printerReducer from './reducers/printerReducer';
-import materialReducer from './reducers/materialReducer';
 
 const reducer = combineReducers({
   printers: printerReducer,
-  materials: materialReducer,
 });
 
 const initialState = {};
