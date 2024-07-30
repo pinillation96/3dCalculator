@@ -1,20 +1,15 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { thunk } from 'redux-thunk'; // Correctly import thunk
-import { composeWithDevTools } from 'redux-devtools-extension';
-import printerReducer from './reducers/printerReducer';
+import { configureStore } from '@reduxjs/toolkit';
+import {thunk} from 'redux-thunk';
+import printerReducer from './reducers/printerReducer.js';
 
-const reducer = combineReducers({
+const reducer = {
   printers: printerReducer,
-});
+};
 
-const initialState = {};
-
-const middleware = [thunk];
-
-const store = createStore(
+const store = configureStore({
   reducer,
-  initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
-);
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
+  devTools: process.env.NODE_ENV !== 'production',
+});
 
 export default store;
